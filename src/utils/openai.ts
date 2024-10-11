@@ -76,7 +76,9 @@ const createChatCompletion = async (
 ) => {
 	const { response, data } = await httpsPost(
 		baseUrl,
-		'/openai/v1/chat/completions',
+		baseUrl === 'api.openai.com'
+			? '/v1/chat/completions'
+			: '/openai/v1/chat/completions',
 		{
 			Authorization: `Bearer ${apiKey}`,
 		},
