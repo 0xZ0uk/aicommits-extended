@@ -80,6 +80,15 @@ const configParsers = {
 
 		return url;
 	},
+	baseUrl(url?: string) {
+		if (!url || url.length === 0) {
+			return undefined;
+		}
+
+		parseAssert('baseUrl', /^https?:\/\//.test(url), 'Must be a valid URL');
+
+		return url.replace(/^https?:\/\//, '');
+	},
 	model(model?: string) {
 		if (!model || model.length === 0) {
 			return 'gpt-3.5-turbo';

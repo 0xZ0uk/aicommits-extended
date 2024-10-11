@@ -68,13 +68,14 @@ const httpsPost = async (
 	});
 
 const createChatCompletion = async (
+	baseUrl: string = 'api.openai.com',
 	apiKey: string,
 	json: CreateChatCompletionRequest,
 	timeout: number,
 	proxy?: string
 ) => {
 	const { response, data } = await httpsPost(
-		'api.openai.com',
+		baseUrl,
 		'/v1/chat/completions',
 		{
 			Authorization: `Bearer ${apiKey}`,
@@ -139,10 +140,12 @@ export const generateCommitMessage = async (
 	maxLength: number,
 	type: CommitType,
 	timeout: number,
-	proxy?: string
+	proxy?: string,
+	baseUrl?: string
 ) => {
 	try {
 		const completion = await createChatCompletion(
+			baseUrl,
 			apiKey,
 			{
 				model,

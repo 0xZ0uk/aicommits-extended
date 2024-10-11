@@ -42,6 +42,17 @@ cli(
 				description: 'Type of commit message to generate',
 				alias: 't',
 			},
+			baseUrl: {
+				type: String,
+				description: 'Custom base URL for the API (default: api.openai.com)',
+				alias: 'b',
+			},
+			model: {
+				type: String,
+				description:
+					'The Chat Completions model to use (default: gpt-3.5-turbo)',
+				alias: 'm',
+			},
 		},
 
 		commands: [configCommand, hookCommand],

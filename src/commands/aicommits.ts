@@ -58,6 +58,7 @@ export default async (
 				env.https_proxy || env.HTTPS_PROXY || env.http_proxy || env.HTTP_PROXY,
 			generate: generate?.toString(),
 			type: commitType?.toString(),
+			baseUrl: env.BASE_URL,
 		});
 
 		const s = spinner();
@@ -73,7 +74,8 @@ export default async (
 				config['max-length'],
 				config.type,
 				config.timeout,
-				config.proxy
+				config.proxy,
+				config.baseUrl
 			);
 		} finally {
 			s.stop('Changes analyzed');
