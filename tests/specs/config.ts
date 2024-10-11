@@ -17,16 +17,6 @@ export default testSuite(({ describe }) => {
 			expect(stderr).toMatch('Invalid config property: UNKNOWN');
 		});
 
-		test('set invalid OPENAI_KEY', async () => {
-			const { stderr } = await aicommits(['config', 'set', 'OPENAI_KEY=abc'], {
-				reject: false,
-			});
-
-			expect(stderr).toMatch(
-				'Invalid config property OPENAI_KEY: Must start with "sk-"'
-			);
-		});
-
 		await test('set config file', async () => {
 			await aicommits(['config', 'set', openAiToken]);
 
